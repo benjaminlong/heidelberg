@@ -117,15 +117,19 @@
         swipe_velocity: 0.3
       };
 
-      Hammer(els.pagesLeft, opts).on("dragright", function(evt) {
-        this.turnPage('back');
-        evt.gesture.stopDetect();
-      }.bind(this));
+      els.pagesLeft.each(function(index, el) {
+        Hammer(el, opts).on("dragright", function(evt) {
+          this.turnPage('back');
+          evt.gesture.stopDetect();
+        }.bind(this));
+      });
 
-      Hammer(els.pagesRight, opts).on("dragleft", function(evt) {
-        this.turnPage('forwards');
-        evt.gesture.stopDetect();
-      }.bind(this));
+      els.pagesRight.each(function(index, el) {
+        Hammer(el, opts).on("dragleft", function(evt) {
+          this.turnPage('forwards');
+          evt.gesture.stopDetect();
+        }.bind(this));
+      });
     }
 
     var forwardsKeycode = 37;
