@@ -17,16 +17,13 @@
   transform-style: preserve-3d;
 }
 /* line 22, ../sass/heidelberg/_heidelberg-plugin.sass */
-.Heidelberg-Book:before, .Heidelberg-Book:after {
+.Heidelberg-Book:after {
   content: "";
   display: table;
-}
-/* line 27, ../sass/heidelberg/_heidelberg-plugin.sass */
-.Heidelberg-Book:after {
   clear: both;
 }
 
-/* line 30, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 27, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page {
   position: absolute;
   width: 50%;
@@ -38,13 +35,13 @@
   transform: rotateY(0);
 }
 
-/* line 43, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 40, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page:nth-child(2) {
   float: left;
   position: relative;
 }
 
-/* line 48, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 45, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page:nth-child(even) {
   transform-origin: 100%;
   left: 0;
@@ -57,84 +54,113 @@
   transform: rotateY(-180deg);
 }
 
-/* line 61, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 72, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.is-active {
   z-index: 2;
 }
 
-/* line 66, ../sass/heidelberg/_heidelberg-plugin.sass */
-.Heidelberg-Page.is-active:nth-child(odd) {
-  transform: rotateY(0);
+/* line 77, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Page.is-active:nth-child(even) {
+  transform: rotateY(10deg);
+}
+/* line 79, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Page.is-active:nth-child(even):hover {
+  transform: rotateY(15deg);
 }
 
-/* line 70, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 82, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Page.is-active:nth-child(odd) {
+  transform: rotateY(-10deg);
+}
+/* line 84, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Page.is-active:nth-child(odd):hover {
+  transform: rotateY(-15deg);
+}
+
+/* line 88, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.is-active:nth-child(odd) ~ .Heidelberg-Page:nth-child(even) {
   transform: rotateY(180deg);
 }
 
-/* line 74, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 92, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.is-active:nth-child(odd) ~ .Heidelberg-Page:nth-child(odd) {
   transform: rotateY(0);
 }
 
-/* line 78, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 96, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.was-active {
   z-index: 1;
 }
 
-/* line 82, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 100, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.is-animating:nth-child(odd) {
   z-index: 4;
 }
 
-/* line 85, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 103, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.is-animating:nth-child(odd) ~ .Heidelberg-Page.is-animating {
   z-index: 3;
 }
 
-/* line 88, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 106, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.is-animating + .Heidelberg-Page:not(.is-animating):nth-child(odd) {
   z-index: 1;
 }
 
-/* line 93, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 111, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Book > .Heidelberg-Spread {
   display: none;
 }
 
-/* line 96, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 114, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Book > .Heidelberg-Spread:first-child {
   display: block;
   width: 100%;
   overflow: hidden;
 }
 
-/* line 102, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 120, ../sass/heidelberg/_heidelberg-plugin.sass */
 .no-csstransforms3d .Heidelberg-Page {
   display: none;
 }
 
-/* line 105, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 123, ../sass/heidelberg/_heidelberg-plugin.sass */
 .no-csstransforms3d .Heidelberg-Page.is-active {
   display: block;
   position: relative;
   float: left;
 }
 
-/* line 111, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 129, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Spread {
   position: relative;
   width: 200%;
 }
 
-/* line 115, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 133, ../sass/heidelberg/_heidelberg-plugin.sass */
 .Heidelberg-Page.with-Spread:nth-child(odd) .Heidelberg-Spread {
   left: -100%;
 }
 
-/* line 120, ../sass/heidelberg/_heidelberg-plugin.sass */
+/* line 138, ../sass/heidelberg/_heidelberg-plugin.sass */
 .no-csstransforms3d .Heidelberg-Page.with-Spread.is-active + .Heidelberg-Page.with-Spread.is-active .Heidelberg-Spread {
   left: -100%;
+}
+
+/* line 144, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Book[data-useragent*='MSIE 10.0'] .Heidelberg-Page {
+  opacity: 0;
+}
+/* line 147, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Book[data-useragent*='MSIE 10.0'] .Heidelberg-Page.is-active {
+  transition: transform 0.9s ease, opacity 0.9s ease;
+  opacity: 1;
+}
+/* line 151, ../sass/heidelberg/_heidelberg-plugin.sass */
+.Heidelberg-Book[data-useragent*='MSIE 10.0'] .Heidelberg-Page.was-active {
+  transition-delay: 2s;
+  transition: transform 0.9s ease, opacity 0.9s ease;
+  opacity: 0;
 }
 
 /* line 1, ../sass/heidelberg/_heidelberg-skin.sass */
@@ -143,7 +169,7 @@
   max-width: 100%;
   height: 215px;
   margin: 0 auto 15px;
-  background: #333333;
+  background: #333;
 }
 
 /* line 9, ../sass/heidelberg/_heidelberg-skin.sass */
@@ -156,7 +182,7 @@
   margin-top: -20px;
   line-height: 22px;
   font-size: 22px;
-  color: #777777;
+  color: #777;
 }
 
 /* line 20, ../sass/heidelberg/_heidelberg-skin.sass */
@@ -171,144 +197,4 @@
 /* line 8, ../sass/heidelberg/_heidelberg-plugin.sass */
 #Heidelberg-example-2 .Heidelberg-Page {
   transition: transform 2s ease-in-out;
-}
-
-/**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
- */
-/* line 8, ../sass/demo/_prism.scss */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #f8f8f2;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  font-size: 14px;
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
-  direction: ltr;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-/* line 29, ../sass/demo/_prism.scss */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
-}
-
-/* line 36, ../sass/demo/_prism.scss */
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #222;
-}
-
-/* Inline code */
-/* line 41, ../sass/demo/_prism.scss */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-}
-
-/* line 48, ../sass/demo/_prism.scss */
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: slategray;
-}
-
-/* line 52, ../sass/demo/_prism.scss */
-.token.punctuation {
-  color: #f8f8f2;
-}
-
-/* line 56, ../sass/demo/_prism.scss */
-.namespace {
-  opacity: .7;
-}
-
-/* line 63, ../sass/demo/_prism.scss */
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol {
-  color: #f92672;
-}
-
-/* line 68, ../sass/demo/_prism.scss */
-.token.boolean,
-.token.number {
-  color: #ae81ff;
-}
-
-/* line 75, ../sass/demo/_prism.scss */
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.builtin {
-  color: #a6e22e;
-}
-
-/* line 85, ../sass/demo/_prism.scss */
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-  color: #f8f8f2;
-}
-
-/* line 91, ../sass/demo/_prism.scss */
-.token.atrule,
-.token.attr-value {
-  color: #e6db74;
-}
-
-/* line 96, ../sass/demo/_prism.scss */
-.token.keyword {
-  color: #66d9ef;
-}
-
-/* line 101, ../sass/demo/_prism.scss */
-.token.regex,
-.token.important {
-  color: #fd971f;
-}
-
-/* line 105, ../sass/demo/_prism.scss */
-.token.important {
-  font-weight: bold;
-}
-
-/* line 109, ../sass/demo/_prism.scss */
-.token.entity {
-  cursor: help;
-}
-
-/* line 1, ../sass/demo/_demo.sass */
-* {
-  position: relative;
-  box-sizing: border-box;
-}
-
-/* line 5, ../sass/demo/_demo.sass */
-html,
-body {
-  height: 100%;
-}
-
-/* line 9, ../sass/demo/_demo.sass */
-body {
-  padding: 25px;
-  background: #2f2f2f;
 }
